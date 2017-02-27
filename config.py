@@ -1,0 +1,2 @@
+MAX_PROBLEMS = 528
+
