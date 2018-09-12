@@ -23,12 +23,28 @@ leading 0's are not allowed.
 Find the sum of the digits of all the n-digit steady squares in the base
 14 numbering system for 1 ≤ n ≤ 10000 (decimal) and give your answer in
 the base 14 system using lower case letters where necessary.
+
 """
 
 
 def main():
-    return "TODO"
+    return "unimplemented"
 
 
 if __name__ == "__main__":
-    print main
+    import ntpath
+    import time
+    from common.shared_functions import verify_solution
+
+    problem_number = int(ntpath.basename(__file__).replace("euler", "").replace(".py", ""))
+    print("Retrieving my answer to Euler Problem {0} ...".format(problem_number))
+
+    ts = time.time()
+    my_answer = main()
+    te = time.time()
+
+    print("My answer: {1}".format(problem_number, my_answer))
+
+    verification_type = verify_solution(problem_number, my_answer)
+    print("Verification: {0}".format(verification_type.name))
+    print("Took {0} seconds.".format(te - ts))

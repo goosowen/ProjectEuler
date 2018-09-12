@@ -27,6 +27,7 @@ number.
             84580156166097919133875499200524063689912560717606
             05886116467109405077541002256983155200055935729725
             71636269561882670428252483600823257530420752963450
+
 """
 
 big_num = "\
@@ -88,4 +89,19 @@ def main():
 
 
 if __name__ == "__main__":
-    print(main())
+    import ntpath
+    import time
+    from common.shared_functions import verify_solution
+
+    problem_number = int(ntpath.basename(__file__).replace("euler", "").replace(".py", ""))
+    print("Retrieving my answer to Euler Problem {0} ...".format(problem_number))
+
+    ts = time.time()
+    my_answer = main()
+    te = time.time()
+
+    print("My answer: {1}".format(problem_number, my_answer))
+
+    verification_type = verify_solution(problem_number, my_answer)
+    print("Verification: {0}".format(verification_type.name))
+    print("Took {0} seconds.".format(te - ts))

@@ -15,12 +15,28 @@ For example, the sequence U(1,2) begins with
 as the sum of two previous members, likewise 7 = 1 + 6 = 3 + 4.
 
 Find U(2,2n+1)[k] for 2 n 10, where k = 10^11.
+
 """
 
 
 def main():
-    return "TODO"
+    return "unimplemented"
 
 
 if __name__ == "__main__":
-    print main
+    import ntpath
+    import time
+    from common.shared_functions import verify_solution
+
+    problem_number = int(ntpath.basename(__file__).replace("euler", "").replace(".py", ""))
+    print("Retrieving my answer to Euler Problem {0} ...".format(problem_number))
+
+    ts = time.time()
+    my_answer = main()
+    te = time.time()
+
+    print("My answer: {1}".format(problem_number, my_answer))
+
+    verification_type = verify_solution(problem_number, my_answer)
+    print("Verification: {0}".format(verification_type.name))
+    print("Took {0} seconds.".format(te - ts))

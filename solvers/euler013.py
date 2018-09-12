@@ -107,12 +107,28 @@ Work out the first ten digits of the sum of the following one-hundred
             72107838435069186155435662884062257473692284509516
             20849603980134001723930671666823555245252804609722
             53503534226472524250874054075591789781264330331690
+
 """
 
 
 def main():
-    return "TODO"
+    return "unimplemented"
 
 
 if __name__ == "__main__":
-    print main
+    import ntpath
+    import time
+    from common.shared_functions import verify_solution
+
+    problem_number = int(ntpath.basename(__file__).replace("euler", "").replace(".py", ""))
+    print("Retrieving my answer to Euler Problem {0} ...".format(problem_number))
+
+    ts = time.time()
+    my_answer = main()
+    te = time.time()
+
+    print("My answer: {1}".format(problem_number, my_answer))
+
+    verification_type = verify_solution(problem_number, my_answer)
+    print("Verification: {0}".format(verification_type.name))
+    print("Took {0} seconds.".format(te - ts))

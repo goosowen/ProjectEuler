@@ -36,12 +36,28 @@ Choose p=1009 and q=3643.
 Find the sum of all values of e, 1 < e < f(1009,3643) and gcd(e,f)=1, so
 that the number of unconcealed messages for this value of e is at a
 minimum.
+
 """
 
 
 def main():
-    return "TODO"
+    return "unimplemented"
 
 
 if __name__ == "__main__":
-    print main
+    import ntpath
+    import time
+    from common.shared_functions import verify_solution
+
+    problem_number = int(ntpath.basename(__file__).replace("euler", "").replace(".py", ""))
+    print("Retrieving my answer to Euler Problem {0} ...".format(problem_number))
+
+    ts = time.time()
+    my_answer = main()
+    te = time.time()
+
+    print("My answer: {1}".format(problem_number, my_answer))
+
+    verification_type = verify_solution(problem_number, my_answer)
+    print("Verification: {0}".format(verification_type.name))
+    print("Took {0} seconds.".format(te - ts))

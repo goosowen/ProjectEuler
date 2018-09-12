@@ -31,12 +31,28 @@ def elevation(x, y):
     first = 5000.0 - ((x**2 + y**2 + x*y)/200.0) + (12.5*(x+y))
     second = (0.000001 * (x**2 + y**2)) - (0.0015*(x+y)) + 0.7
     return first * math.exp(-abs(second))
+
 """
 
 
 def main():
-    return "TODO"
+    return "unimplemented"
 
 
 if __name__ == "__main__":
-    print main
+    import ntpath
+    import time
+    from common.shared_functions import verify_solution
+
+    problem_number = int(ntpath.basename(__file__).replace("euler", "").replace(".py", ""))
+    print("Retrieving my answer to Euler Problem {0} ...".format(problem_number))
+
+    ts = time.time()
+    my_answer = main()
+    te = time.time()
+
+    print("My answer: {1}".format(problem_number, my_answer))
+
+    verification_type = verify_solution(problem_number, my_answer)
+    print("Verification: {0}".format(verification_type.name))
+    print("Took {0} seconds.".format(te - ts))

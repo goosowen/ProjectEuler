@@ -25,12 +25,28 @@ f(12345) = 1234 + 5 * 34 = 1404 : 12345 and 1404 are both not divisible by
 The sum of the divisibility multipliers for the primes that are coprime to
 10 and less than 1000 is 39517. What is the sum of the divisibility
 multipliers for the primes that are coprime to 10 and less than 10^7?
+
 """
 
 
 def main():
-    return "TODO"
+    return "unimplemented"
 
 
 if __name__ == "__main__":
-    print main
+    import ntpath
+    import time
+    from common.shared_functions import verify_solution
+
+    problem_number = int(ntpath.basename(__file__).replace("euler", "").replace(".py", ""))
+    print("Retrieving my answer to Euler Problem {0} ...".format(problem_number))
+
+    ts = time.time()
+    my_answer = main()
+    te = time.time()
+
+    print("My answer: {1}".format(problem_number, my_answer))
+
+    verification_type = verify_solution(problem_number, my_answer)
+    print("Verification: {0}".format(verification_type.name))
+    print("Took {0} seconds.".format(te - ts))

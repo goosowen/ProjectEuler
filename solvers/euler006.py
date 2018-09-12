@@ -15,12 +15,13 @@ natural numbers and the square of the sum is 3025 - 385 = 2640.
 
 Find the difference between the sum of the squares of the first one
 hundred natural numbers and the square of the sum.
+
 """
 
 
 def sum_of_squares(n):
     total = 0
-    for i in xrange(1, n + 1):
+    for i in range(1, n + 1):
         total += i ** 2
     return total
 
@@ -34,4 +35,19 @@ def main():
 
 
 if __name__ == "__main__":
-    print(main())
+    import ntpath
+    import time
+    from common.shared_functions import verify_solution
+
+    problem_number = int(ntpath.basename(__file__).replace("euler", "").replace(".py", ""))
+    print("Retrieving my answer to Euler Problem {0} ...".format(problem_number))
+
+    ts = time.time()
+    my_answer = main()
+    te = time.time()
+
+    print("My answer: {1}".format(problem_number, my_answer))
+
+    verification_type = verify_solution(problem_number, my_answer)
+    print("Verification: {0}".format(verification_type.name))
+    print("Took {0} seconds.".format(te - ts))

@@ -1,19 +1,11 @@
 import gevent.monkey
-gevent.monkey.patch_all()
 from gevent.pool import Group
-from enum import Enum
+from runner.displayer import Displayer
+from common.shared_functions import get_my_answer
+from common.shared_functions import verify_solution
+from common.constants import answer_types
 
-# TODO cleanup and be more efficient about these imports
-def get_my_answer(number):
-    from importlib import import_module
-    try:
-        euler_file = "solvers.euler" + str(number).zfill(3)
-        mod = import_module(euler_file)
-        met = getattr(mod, "main")
-        return str(met())
-    except Exception as e:
-        print(e)
-        return None
+gevent.monkey.patch_all()
 
 
 class Runner:
@@ -26,6 +18,8 @@ class Runner:
         self.incorrect_answers = 0
         self.solutions = {}
         self.populate_solutions()
+
+        self.displayer = Displayer()
 
     def populate_solutions(self):
         with open('solutions.txt') as f:
@@ -49,7 +43,7 @@ class Runner:
         results = []
 
         for problem_number in self.problems:
-            tasks.append(verification_task_group.spawn(self.verify_solution, problem_number))
+            tasks.append(verification_task_group.spawn(verify_solution, problem_number))
 
         gevent.joinall(tasks)
         for task in tasks:
@@ -58,31 +52,4 @@ class Runner:
             else:
                 raise ValueError('gevent thread was not successful')
 
-        for r in results:
-            if r:
-                self.correct_answers += 1
-            else:
-                self.incorrect_answers += 1
-
-        self.log_statistics()
-
-    def verify_solution(self, number):
-        my_answer = get_my_answer(number)
-        if not my_answer or my_answer == "TODO":
-            return
-
-        solution = self.get_solution(number)
-        if not solution:
-            self.logger.warning("Solution doesn't exist for problem %s", number)
-            return "Correct"
-
-        if my_answer == solution:
-            return True
-        else:
-            self.logger.warning("Incorrect answer to problem %s: %s", number, my_answer)
-            return False
-
-    def log_statistics(self):
-        self.logger.info("CORRECT: %s", self.correct_answers)
-        self.logger.info("INCORRECT: %s", self.incorrect_answers)
-        self.logger.info("UNIMPLEMENTED: %s", self.max_problems - self.correct_answers - self.incorrect_answers)
+        self.displayer.display(results)

@@ -24,12 +24,28 @@ Give your answer as a hexadecimal number.
 (A,B,C,D,E and F in upper case, without any leading or trailing code that
 marks the number as hexadecimal and without leading zeroes , e.g. 1A3F and
 not: 1a3f and not 0x1a3f and not $1A3F and not #1A3F and not 0000001A3F)
+
 """
 
 
 def main():
-    return "TODO"
+    return "unimplemented"
 
 
 if __name__ == "__main__":
-    print main
+    import ntpath
+    import time
+    from common.shared_functions import verify_solution
+
+    problem_number = int(ntpath.basename(__file__).replace("euler", "").replace(".py", ""))
+    print("Retrieving my answer to Euler Problem {0} ...".format(problem_number))
+
+    ts = time.time()
+    my_answer = main()
+    te = time.time()
+
+    print("My answer: {1}".format(problem_number, my_answer))
+
+    verification_type = verify_solution(problem_number, my_answer)
+    print("Verification: {0}".format(verification_type.name))
+    print("Took {0} seconds.".format(te - ts))

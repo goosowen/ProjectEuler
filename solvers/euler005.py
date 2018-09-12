@@ -9,10 +9,12 @@ from 1 to 10 without any remainder.
 
 What is the smallest number that is evenly divisible by all of the numbers
 from 1 to 20?
+
 """
 
 from operator import mul
-from common import is_prime
+from functools import reduce
+from common.euler_functions import is_prime
 
 
 def main():
@@ -41,4 +43,19 @@ def main():
 
 
 if __name__ == "__main__":
-    print(main())
+    import ntpath
+    import time
+    from common.shared_functions import verify_solution
+
+    problem_number = int(ntpath.basename(__file__).replace("euler", "").replace(".py", ""))
+    print("Retrieving my answer to Euler Problem {0} ...".format(problem_number))
+
+    ts = time.time()
+    my_answer = main()
+    te = time.time()
+
+    print("My answer: {1}".format(problem_number, my_answer))
+
+    verification_type = verify_solution(problem_number, my_answer)
+    print("Verification: {0}".format(verification_type.name))
+    print("Took {0} seconds.".format(te - ts))
