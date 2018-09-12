@@ -16,26 +16,24 @@ mem = {}
 # sum of all amicable numbers under 10000
 total = 0
 
-for i in xrange(1,10000):
-	# sum of all proper divisors of i
-	divisors_sum = 0
+for i in xrange(1, 10000):
+    # sum of all proper divisors of i
+    divisors_sum = 0
 
-	for j in xrange(1,int(math.sqrt(i))):
-		if i%j == 0:
-			divisors_sum += j
-			other = i/j
-			if other != j and other != i:
-				divisors_sum += other
+    for j in xrange(1, int(math.sqrt(i))):
+        if i % j == 0:
+            divisors_sum += j
+            other = i / j
+            if other != j and other != i:
+                divisors_sum += other
 
-	# check if amicable
-	if mem.get(divisors_sum):
-		if mem.get(divisors_sum) == i:
-			print i, divisors_sum
-			total += i
-			total += divisors_sum
+    # check if amicable
+    if mem.get(divisors_sum):
+        if mem.get(divisors_sum) == i:
+            print i, divisors_sum
+            total += i
+            total += divisors_sum
 
-	mem[i] = divisors_sum
+    mem[i] = divisors_sum
 
 print total
-
-

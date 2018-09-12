@@ -10,10 +10,20 @@ that the 6th prime is 13.
 What is the 10001st prime number?
 """
 
+from common import is_prime_mem
+
 
 def main():
-    return "TODO"
+    primes = []
+    for possible_prime in xrange(2, 1000000):
+        if is_prime_mem(possible_prime, primes):
+            primes.append(possible_prime)
+            if len(primes) == 10001:
+                return possible_prime
+
+    print(len(primes))
+    return "Unknown"
 
 
 if __name__ == "__main__":
-    print main
+    print(main())

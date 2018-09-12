@@ -10,13 +10,16 @@ Find the difference between the sum of the squares of the first one hundred natu
 '''
 NUMBER = 100
 
+
 def sum_of_squares(n):
-	total = 0
-	for i in xrange(1,n+1):
-		total += i**2
-	return total
+    total = 0
+    for i in xrange(1, n + 1):
+        total += i ** 2
+    return total
+
 
 def square_of_sum(n):
-	return (n*(n+1)/2)**2
+    return (n * (n + 1) / 2) ** 2
+
 
 print square_of_sum(NUMBER) - sum_of_squares(NUMBER)

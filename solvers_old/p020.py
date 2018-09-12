@@ -10,11 +10,11 @@ Find the sum of the digits in the number 100!
 '''
 
 fact = 1
-for i in xrange(1,101):
-	fact *= i
+for i in xrange(1, 101):
+    fact *= i
 
 tot = 0
 for c in str(fact):
-	tot += int(c)
+    tot += int(c)
 
 print tot

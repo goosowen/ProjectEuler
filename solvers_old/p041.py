@@ -8,18 +8,20 @@ What is the largest n-digit pandigital prime that exists?
 
 import common
 
+
 # 
 def is_pandigital(i):
-	if len(i) > 9 or '0' in i:
-		return False
+    if len(i) > 9 or '0' in i:
+        return False
 
-	for j in xrange(1,len(i)+1):
-		if str(j) not in i:
-			return False
+    for j in xrange(1, len(i) + 1):
+        if str(j) not in i:
+            return False
 
-	return True
+    return True
 
-for i in xrange(10**9, 1, -1):
-	if is_pandigital(str(i)) and common.is_prime(i):
-		print i
-		break
+
+for i in xrange(10 ** 9, 1, -1):
+    if is_pandigital(str(i)) and common.is_prime(i):
+        print i
+        break

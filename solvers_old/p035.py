@@ -12,21 +12,20 @@ from common import is_prime
 LIMIT = 1000000
 
 circular_primes = []
-for num in xrange(2,LIMIT):
-	num_rotations = 0
-	num_str = str(num)
-	circular_prime = True
-	while num_rotations < len(num_str):
-		if not is_prime(int(num_str)):
-			circular_prime = False
-			break
-		else:
-			num_rotations += 1
-			num_str = num_str[1:] + num_str[:1]
+for num in xrange(2, LIMIT):
+    num_rotations = 0
+    num_str = str(num)
+    circular_prime = True
+    while num_rotations < len(num_str):
+        if not is_prime(int(num_str)):
+            circular_prime = False
+            break
+        else:
+            num_rotations += 1
+            num_str = num_str[1:] + num_str[:1]
 
-	if circular_prime:
-		circular_primes.append(num)
+    if circular_prime:
+        circular_primes.append(num)
 
 print circular_primes
 print len(circular_primes)
-

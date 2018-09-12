@@ -17,11 +17,10 @@ What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed 
 jump = 2
 tot = 1
 i = 1
-while i < 1001**2:
-	for j in xrange(4):
-		i += jump
-		tot += i
-	jump += 2
+while i < 1001 ** 2:
+    for j in xrange(4):
+        i += jump
+        tot += i
+    jump += 2
 
 print tot
-

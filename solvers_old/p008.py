@@ -55,37 +55,31 @@ best_adj_str = big_num[start_index:end_index]
 
 prod = 1
 for c in best_adj_str:
-	prod *= int(c)
+    prod *= int(c)
 
 best_prod = prod
 
 while end_index < len(big_num):
-	if int(big_num[start_index]) == 0:
-		prod = 1
-		for c in big_num[start_index+1:end_index+1]:
-			prod *= int(c)
+    if int(big_num[start_index]) == 0:
+        prod = 1
+        for c in big_num[start_index + 1:end_index + 1]:
+            prod *= int(c)
 
-	else:
-		prod /= int(big_num[start_index])
-		prod *= int(big_num[end_index])
+    else:
+        prod /= int(big_num[start_index])
+        prod *= int(big_num[end_index])
 
-	start_index += 1
-	end_index += 1
+    start_index += 1
+    end_index += 1
 
-	if prod > best_prod:
-		best_prod = prod
-		best_adj_str = big_num[start_index:end_index]
+    if prod > best_prod:
+        best_prod = prod
+        best_adj_str = big_num[start_index:end_index]
 
 print best_adj_str
 prod = 1
 for c in best_adj_str:
-	prod *= int(c)
+    prod *= int(c)
 print prod
 print best_prod
 print len(best_adj_str)
-
-
-
-
-
-

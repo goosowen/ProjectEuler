@@ -21,43 +21,40 @@ import math
 
 longest_cycle = 6
 best_num = 7
-for i in xrange(11,1000):
+for i in xrange(11, 1000):
 
-	# only look for prime numbers. Other numbers will have cycles equivalent to their prime factor with the shortest cycle
-	prime = True
-	for j in xrange(2,int(math.sqrt(i))+1):
-		if i % j == 0:
-			prime = False
-			break
+    # only look for prime numbers. Other numbers will have cycles equivalent to their prime factor with the shortest cycle
+    prime = True
+    for j in xrange(2, int(math.sqrt(i)) + 1):
+        if i % j == 0:
+            prime = False
+            break
 
-	if prime:
-		cycle_length = 0
-		remainders_hit = set()
+    if prime:
+        cycle_length = 0
+        remainders_hit = set()
 
-		if i < 100:
-			remainder = 100 % i
-			while remainder not in remainders_hit:
-				cycle_length += 1
-				remainders_hit.add(remainder)
+        if i < 100:
+            remainder = 100 % i
+            while remainder not in remainders_hit:
+                cycle_length += 1
+                remainders_hit.add(remainder)
 
-				while remainder < i:
-					remainder *= 10
-				remainder = remainder % i
-		else: # 100 <= i < 1000
-			remainder = 1000 % i
-			while remainder not in remainders_hit:
-				cycle_length += 1
-				remainders_hit.add(remainder)
+                while remainder < i:
+                    remainder *= 10
+                remainder = remainder % i
+        else:  # 100 <= i < 1000
+            remainder = 1000 % i
+            while remainder not in remainders_hit:
+                cycle_length += 1
+                remainders_hit.add(remainder)
 
-				while remainder < i:
-					remainder *= 10
-				remainder = remainder % i
+                while remainder < i:
+                    remainder *= 10
+                remainder = remainder % i
 
-    	if cycle_length > longest_cycle:
-    		longest_cycle = cycle_length
-    		best_num = i
+    if cycle_length > longest_cycle:
+        longest_cycle = cycle_length
+        best_num = i
 
-
-print best_num, longest_cycle, 1.0/best_num
-
-	
+print best_num, longest_cycle, 1.0 / best_num

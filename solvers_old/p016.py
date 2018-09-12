@@ -6,9 +6,9 @@
 What is the sum of the digits of the number 21000?
 '''
 
-#for i in xrange(0,51,10):
-x = 2**1000
+# for i in xrange(0,51,10):
+x = 2 ** 1000
 tot = 0
 for c in str(x):
-	tot += int(c)
+    tot += int(c)
 print tot

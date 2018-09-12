@@ -20,10 +20,36 @@ Find the first four consecutive integers to have four distinct primes
 factors. What is the first of these numbers?
 """
 
+from ..common import get_prime_factors
+
 
 def main():
-    return "TODO"
+    consecutive = []
+    consecutive_debug = []
+    mem = {}
+    for i in range(2, 1000000):
+        if len(consecutive) == 4:
+            print(consecutive)
+            print(consecutive_debug)
+            break
+
+        if len(consecutive) >= 3:
+            print(consecutive)
+            print(consecutive_debug)
+
+        if i % 10000 == 0:
+            print("Processing at", i, "...")
+
+        mem[i] = get_prime_factors(i, mem)
+        if len(mem[i]) == 4:
+            consecutive.append(i)
+            consecutive_debug.append(mem[i])
+        else:
+            consecutive = []
+            consecutive_debug = []
+
+    return (consecutive[0])
 
 
 if __name__ == "__main__":
-    print main
+    print(main())

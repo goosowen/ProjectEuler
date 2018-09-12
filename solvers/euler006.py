@@ -18,9 +18,20 @@ hundred natural numbers and the square of the sum.
 """
 
 
+def sum_of_squares(n):
+    total = 0
+    for i in xrange(1, n + 1):
+        total += i ** 2
+    return total
+
+
+def square_of_sum(n):
+    return (n * (n + 1) / 2) ** 2
+
+
 def main():
-    return "TODO"
+    return square_of_sum(100) - sum_of_squares(100)
 
 
 if __name__ == "__main__":
-    print main
+    print(main())

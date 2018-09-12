@@ -8,26 +8,26 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 
 THRESHOLD = 4000000
 
+
 def sum_even_fib_terms():
-	total = 0
+    total = 0
 
-	mem = {}
-	mem[0] = 1
-	mem[1] = 2
+    mem = {}
+    mem[0] = 1
+    mem[1] = 2
 
-	index = 2
-	term = 2
+    index = 2
+    term = 2
 
-	while term < THRESHOLD:
-		if term % 2 == 0:
-			total += term
+    while term < THRESHOLD:
+        if term % 2 == 0:
+            total += term
 
-		term = mem[index-1] + mem[index-2]
-		mem[index] = term
-		index += 1
+        term = mem[index - 1] + mem[index - 2]
+        mem[index] = term
+        index += 1
 
-	return total
+    return total
+
 
 print sum_even_fib_terms()
-
-

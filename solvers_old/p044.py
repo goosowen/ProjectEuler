@@ -11,39 +11,40 @@ Find the pair of pentagonal numbers, Pj and Pk, for which their sum and differen
 
 
 '''
-import math
+
 
 def main():
-	pentagonals = []
-	lowest_diff = float("inf")
-	for n in xrange(1, 50001):
-		pentagonal = n*(3*n - 1)/2
-		pentagonals.append(pentagonal)
+    pentagonals = []
+    lowest_diff = float("inf")
+    for n in xrange(1, 50001):
+        pentagonal = n * (3 * n - 1) / 2
+        pentagonals.append(pentagonal)
 
-	pents = set(pentagonals)
+    pents = set(pentagonals)
 
-	for i in xrange(1, 30000):
-		pentagonal = pentagonals[i]
-		last_diff = pentagonal - pentagonals[i-1]
-		if last_diff > lowest_diff:
-			print "lowest diff possible: ", lowest_diff
-			return
+    for i in xrange(1, 30000):
+        pentagonal = pentagonals[i]
+        last_diff = pentagonal - pentagonals[i - 1]
+        if last_diff > lowest_diff:
+            print "lowest diff possible: ", lowest_diff
+            return
 
-		# print pentagonal, [p for p in reversed(pentagonals[:i])]
-		for other_pentagonal in reversed(pentagonals[:i]):
-			diff = pentagonal - other_pentagonal
-			if diff > lowest_diff:
-				break
+        # print pentagonal, [p for p in reversed(pentagonals[:i])]
+        for other_pentagonal in reversed(pentagonals[:i]):
+            diff = pentagonal - other_pentagonal
+            if diff > lowest_diff:
+                break
 
-			summ = pentagonal + other_pentagonal
-			if diff in pents and summ in pents:
-				print pentagonal, other_pentagonal
-				lowest_diff = diff
+            summ = pentagonal + other_pentagonal
+            if diff in pents and summ in pents:
+                print pentagonal, other_pentagonal
+                lowest_diff = diff
 
-			if summ > pentagonals[-1]:
-				print "need more"
-				return
+            if summ > pentagonals[-1]:
+                print "need more"
+                return
 
-	print "didn't finish, lowest diff so far:", lowest_diff
+    print "didn't finish, lowest diff so far:", lowest_diff
+
 
 if __name__ == "__main__": main()

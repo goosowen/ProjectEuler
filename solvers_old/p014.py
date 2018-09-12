@@ -16,31 +16,32 @@ Which starting number, under one million, produces the longest chain?
 NOTE: Once the chain starts the terms are allowed to go above one million.
 '''
 
-mem = {1:1}
+mem = {1: 1}
+
 
 def find_chain_length(num):
-	if mem.get(num):
-		return mem.get(num)
+    if mem.get(num):
+        return mem.get(num)
 
-	next_num = 0
-	if num % 2 == 0:
-		next_num = num/2
-	else:
-		next_num = 3*num + 1
+    next_num = 0
+    if num % 2 == 0:
+        next_num = num / 2
+    else:
+        next_num = 3 * num + 1
 
-	chain_length = 1 + find_chain_length(next_num)
-	mem[num] = chain_length
-	return chain_length
+    chain_length = 1 + find_chain_length(next_num)
+    mem[num] = chain_length
+    return chain_length
 
 
-for i in xrange(1,1000000):
-	find_chain_length(i)
+for i in xrange(1, 1000000):
+    find_chain_length(i)
 
 max_val = 0
 best_num = 0
 for k in mem.keys():
-	if mem[k] > max_val:
-		best_num = k
-		max_val = mem[k]
+    if mem[k] > max_val:
+        best_num = k
+        max_val = mem[k]
 
 print best_num, max_val

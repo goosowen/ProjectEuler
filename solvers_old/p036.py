@@ -13,7 +13,7 @@ LIMIT = 1000000
 
 summation = 0
 for num in xrange(LIMIT):
-	if is_palindrome(str(num)) and is_palindrome(bin(num)[2:]):
-		summation += num
+    if is_palindrome(str(num)) and is_palindrome(bin(num)[2:]):
+        summation += num
 
 print summation

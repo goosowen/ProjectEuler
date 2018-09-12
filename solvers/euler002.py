@@ -15,8 +15,25 @@ exceed four million.
 
 
 def main():
-    return "TODO"
+    mem = {}
+    mem[0] = 1
+    mem[1] = 2
+
+    limit = 4 * 10 ** 6
+    total = 0
+    i = 1
+    current = 2
+    while current < limit:
+
+        if current % 2 == 0:
+            total += current
+
+        i += 1
+        current = mem[i - 1] + mem[i - 2]
+        mem[i] = current
+
+    return total
 
 
 if __name__ == "__main__":
-    print main
+    print(main())

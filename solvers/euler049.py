@@ -17,10 +17,51 @@ What 12-digit number do you form by concatenating the three terms in this
 sequence?
 """
 
+import math
+
+
+# TODO use the common function
+def is_prime(i):
+    for j in range(2, int(math.sqrt(i)) + 1):
+        if i % j == 0:
+            return False
+    return True
+
+
+def get_all_four_digit_primes():
+    s = []
+    for i in range(1000, 10001):
+        if is_prime(i):
+            s.append(i)
+
+    return s
+
 
 def main():
-    return "TODO"
+    primes = get_all_four_digit_primes()
+    permutations_dict = {}
+    for p in primes:
+        p_str = str(p)
+        digits = []
+        for c in p_str:
+            digits.append(int(c))
+        digits.sort()
+        p_perm = ''.join(str(d) for d in digits)
+        permutations_dict[p_perm] = permutations_dict.get(p_perm, [])
+        permutations_dict[p_perm].append(p)
+
+        if len(permutations_dict[p_perm]) >= 3:
+
+            # TODO doesn't quite capture all cases.
+            # Needs to check the diffs between all the permutations, not just the latest consecutive ones.
+            if permutations_dict[p_perm][-1] - permutations_dict[p_perm][-2] == permutations_dict[p_perm][-2] - \
+                    permutations_dict[p_perm][-3]:
+                answer = ''
+                answer += str(permutations_dict[p_perm][-3])
+                answer += str(permutations_dict[p_perm][-2])
+                answer += str(permutations_dict[p_perm][-1])
+                return answer
 
 
 if __name__ == "__main__":
-    print main
+    print(main())

@@ -10,25 +10,22 @@ So, COLIN would obtain a score of 938 × 53 = 49714.
 What is the total of all the name scores in the file?
 '''
 import csv
+
 from common import letter_to_score
 
 names = []
 with open("resources/p022_names.txt", 'r') as f:
-	for row in csv.reader(f, delimiter=','):
-		names.append(row)
+    for row in csv.reader(f, delimiter=','):
+        names.append(row)
 
 names = sorted(names[0])
 
 total = 0
 for i in xrange(len(names)):
-	name = names[i]
-	word_total = 0
-	for c in name:
-		word_total += letter_to_score[c]
-	total += word_total * (i+1)
+    name = names[i]
+    word_total = 0
+    for c in name:
+        word_total += letter_to_score[c]
+    total += word_total * (i + 1)
 
 print total
-
-
-
-		

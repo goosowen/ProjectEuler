@@ -15,6 +15,7 @@ how many are triangle words?
 
 from common import letter_to_score
 
+
 class TriangleNumberPopulater:
 
     def __init__(self):
@@ -23,7 +24,7 @@ class TriangleNumberPopulater:
         self.max_calculated_sequence = 0
 
     def calc_triangle_number(self, n):
-        return .5 * n * (n+1)
+        return .5 * n * (n + 1)
 
     def is_triangle_number(self, num):
         while num > self.max_calculated_number:
@@ -33,6 +34,7 @@ class TriangleNumberPopulater:
 
         return num in self.triangle_numbers
 
+
 def calculate_word_number(word):
     total = 0
     for c in word:
@@ -40,18 +42,18 @@ def calculate_word_number(word):
 
     return total
 
+
 if __name__ == "__main__":
-    total_triangle_words = 0 
+    total_triangle_words = 0
     tnp = TriangleNumberPopulater()
     with open('resources/p042_words.txt', 'r') as f:
         words = f.read().split(',')
         for word in words:
             if word.startswith('"') and word.endswith('"'):
                 word = word[1:-1]
-            
+
             word_number = calculate_word_number(word)
             if tnp.is_triangle_number(word_number):
                 total_triangle_words += 1
 
     print total_triangle_words
-

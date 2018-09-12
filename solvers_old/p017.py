@@ -14,7 +14,7 @@ contains 20 letters. The use of "and" when writing out numbers is in compliance 
 from num2words import num2words
 
 num_letters = 0
-for i in xrange(1,1001):
-	stripped_num = num2words(i).replace(" ","").replace("-","")
-	num_letters += len(stripped_num)
+for i in xrange(1, 1001):
+    stripped_num = num2words(i).replace(" ", "").replace("-", "")
+    num_letters += len(stripped_num)
 print num_letters

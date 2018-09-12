@@ -23,17 +23,15 @@ with open('resources/p067_triangle.txt') as f:
 
 TRIANGLE = []
 for l in content:
-	TRIANGLE.append(map(int,l.split(' ')))
+    TRIANGLE.append(map(int, l.split(' ')))
 
-#maps position (r,c) to best total to that position
-mem = {(0,0):TRIANGLE[0][0], (1,0):TRIANGLE[0][0]+TRIANGLE[1][0], (1,1):TRIANGLE[0][0]+TRIANGLE[1][1]}
+# maps position (r,c) to best total to that position
+mem = {(0, 0): TRIANGLE[0][0], (1, 0): TRIANGLE[0][0] + TRIANGLE[1][0], (1, 1): TRIANGLE[0][0] + TRIANGLE[1][1]}
 
 for row in xrange(2, len(TRIANGLE)):
-	mem[(row,0)] = mem[(row-1,0)] + TRIANGLE[row][0]
-	mem[(row,row)] = mem[(row-1,row-1)] + TRIANGLE[row][row]
-	for col in xrange(1,row):
-		mem[(row,col)] = max( mem[(row-1,col-1)], mem[(row-1,col)] ) + TRIANGLE[row][col]
+    mem[(row, 0)] = mem[(row - 1, 0)] + TRIANGLE[row][0]
+    mem[(row, row)] = mem[(row - 1, row - 1)] + TRIANGLE[row][row]
+    for col in xrange(1, row):
+        mem[(row, col)] = max(mem[(row - 1, col - 1)], mem[(row - 1, col)]) + TRIANGLE[row][col]
 
 print max(mem.values())
-
-

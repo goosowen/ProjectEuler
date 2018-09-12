@@ -10,30 +10,23 @@ It is possible to make £2 in the following way:
 How many different ways can £2 be made using any number of coins?
 '''
 
-coins = [200, 100, 50, 20, 10, 5, 2] # the 1 is implied in find_combos
+coins = [200, 100, 50, 20, 10, 5, 2]  # the 1 is implied in find_combos
 GOAL = 200
 
 combos = 0
 tot = 0
 
+
 def find_combos(coins, remaining):
+    if not coins:
+        return 1
 
-	if not coins:
-		return 1
+    tot = 0
+    val = coins[0]
+    for i in xrange(remaining / val + 1):
+        tot += find_combos(coins[1:], remaining - val * i)
 
-	tot = 0
-	val = coins[0]
-	for i in xrange(remaining / val + 1):
-		tot += find_combos(coins[1:], remaining - val * i)
+    return tot
 
-	return tot
 
 print find_combos(coins, 200)
-
-
-
-
-
-
-
-

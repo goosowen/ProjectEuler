@@ -16,30 +16,31 @@ Find the sum of all 0 to 9 pandigital numbers with this property.
 '''
 
 from itertools import permutations
+
 DIGITS = ''.join(str(d) for d in range(10))
 
-DIVISOR_LIST = [2,3,5,7,11,13,17]
+DIVISOR_LIST = [2, 3, 5, 7, 11, 13, 17]
+
+
 def follows_property(num_str):
-	for start_d in xrange(1,8):
-		num_sub = int(num_str[start_d:start_d+3])
-		if num_sub % DIVISOR_LIST[start_d-1] != 0:
-			return False
+    for start_d in xrange(1, 8):
+        num_sub = int(num_str[start_d:start_d + 3])
+        if num_sub % DIVISOR_LIST[start_d - 1] != 0:
+            return False
 
-	return True
+    return True
 
 
-#TESTING
+# TESTING
 # print is_pandigital("1234567890")
 # print is_pandigital("1234567899")
 # print follows_property("1406357289")
 
 if __name__ == "__main__":
-	pandigitals = [''.join(p) for p in permutations(DIGITS)]
-	total = 0
-	for num_str in pandigitals:
-		if follows_property(num_str):
-			total += int(num_str)
+    pandigitals = [''.join(p) for p in permutations(DIGITS)]
+    total = 0
+    for num_str in pandigitals:
+        if follows_property(num_str):
+            total += int(num_str)
 
-	print total
-
-
+    print total

@@ -19,22 +19,22 @@ final_number = ""
 non_fixed_nums = range(10)
 total = 999999
 
-factorials = [math.factorial(x) for x in range(1,11)]
+factorials = [math.factorial(x) for x in range(1, 11)]
 print factorials
 
 while total > 0:
-	for pos in xrange(10,0,-1):
-		for i in xrange(pos,0,-1):
-			fact = factorials[i-1]
-			if fact <= total:
-				final_number += str(non_fixed_nums.pop(total / fact))
-				print total, i, fact, final_number[-1], total / fact
-				total = total % fact
+    for pos in xrange(10, 0, -1):
+        for i in xrange(pos, 0, -1):
+            fact = factorials[i - 1]
+            if fact <= total:
+                final_number += str(non_fixed_nums.pop(total / fact))
+                print total, i, fact, final_number[-1], total / fact
+                total = total % fact
 
-				break
+                break
 
 for remainder_num in non_fixed_nums:
-	final_number += str(remainder_num)
+    final_number += str(remainder_num)
 
 print final_number
 2783915604

@@ -14,13 +14,13 @@ Find the sum of all the numbers that can be written as the sum of fifth powers o
 '''
 
 nice_nums = set()
-for i in xrange(2,1000000):
-	tot = 0
-	for c in str(i):
-		tot += int(c)**5
-	if tot == i:
-		nice_nums.add(i)
+for i in xrange(2, 1000000):
+    tot = 0
+    for c in str(i):
+        tot += int(c) ** 5
+    if tot == i:
+        nice_nums.add(i)
 
 print nice_nums, sum(nice_nums)
 
-#443839
+# 443839

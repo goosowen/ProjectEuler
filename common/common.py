@@ -27,17 +27,6 @@ def is_prime(i):
     return True
 
 
-def is_prime_mem(num, primes):
-    low_bound = math.sqrt(num)
-    for p in primes:
-        if num % p == 0:
-            return False
-        if p > low_bound:
-            return True
-
-    return True
-
-
 def get_primes_distinct(i):
     for j in xrange(2, int(math.sqrt(i)) + 1):
         if i % j == 0:

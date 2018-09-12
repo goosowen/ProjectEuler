@@ -20,32 +20,30 @@ What is the value of the first triangle number to have over five hundred divisor
 '''
 
 import math
+
 # pure brute force method
 
 DIVISORS = 500
 
+
 def find_num(limit):
-	tot = 0
-	
-	for i in xrange(1,limit):
-		tot += i
+    tot = 0
 
-		num_divisors = 1
-		for d in xrange(int(math.sqrt(tot)),1,-1):	
-			if tot % d == 0:
-				num_divisors += 1
+    for i in xrange(1, limit):
+        tot += i
 
-		if num_divisors*2 >= DIVISORS:
-			print tot, num_divisors * 2
-			return tot
+        num_divisors = 1
+        for d in xrange(int(math.sqrt(tot)), 1, -1):
+            if tot % d == 0:
+                num_divisors += 1
 
-		# mem[tot] = divisor_list
-		
+        if num_divisors * 2 >= DIVISORS:
+            print tot, num_divisors * 2
+            return tot
 
+    # mem[tot] = divisor_list
 
-	return "limit not big enough"
+    return "limit not big enough"
 
 
 print find_num(50000)
-
-
