@@ -30,8 +30,21 @@ What is the first term in the Fibonacci sequence to contain 1000 digits?
 """
 
 
+# TODO add fibonacci sequence to lazy initializer in runner
 def main():
-    return "unimplemented"
+    mem = {1: 1, 2: 1}
+
+    def fib_finder(limit):
+        val = 1
+        idx = 3
+        while val < limit:
+            val = mem[idx - 1] + mem[idx - 2]
+            mem[idx] = val
+            idx += 1
+
+        return idx - 1
+
+    return fib_finder(10 ** 999)
 
 
 if __name__ == "__main__":

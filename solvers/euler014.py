@@ -26,7 +26,32 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
 
 
 def main():
-    return "unimplemented"
+    mem = {1: 1}
+
+    def find_chain_length(num):
+        if mem.get(num):
+            return mem.get(num)
+
+        if num % 2 == 0:
+            next_num = num / 2
+        else:
+            next_num = 3 * num + 1
+
+        chain_length = 1 + find_chain_length(next_num)
+        mem[num] = chain_length
+        return chain_length
+
+    for i in range(1, 1000000):
+        find_chain_length(i)
+
+    max_val = 0
+    best_num = 0
+    for k in mem.keys():
+        if mem[k] > max_val:
+            best_num = k
+            max_val = mem[k]
+
+    return best_num
 
 
 if __name__ == "__main__":

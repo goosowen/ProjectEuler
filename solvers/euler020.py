@@ -12,7 +12,15 @@ Find the sum of the digits in the number 100!
 
 
 def main():
-    return "unimplemented"
+    fact = 1
+    for i in range(1, 101):
+        fact *= i
+
+    tot = 0
+    for c in str(fact):
+        tot += int(c)
+
+    return tot
 
 
 if __name__ == "__main__":

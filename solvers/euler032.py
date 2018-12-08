@@ -21,7 +21,38 @@ only include it once in your sum.
 
 
 def main():
-    return "unimplemented"
+    products = set()
+
+    for two_digit_num in range(1, 100):
+        two_str = str(two_digit_num)
+        if "0" in two_str:
+            continue
+        for three_digit_num in range(100, 10000):
+            three_str = str(three_digit_num)
+            if "0" in three_str:
+                continue
+            product = two_digit_num * three_digit_num
+            product_str = str(product)
+            if "0" in product_str:
+                continue
+
+            if len(product_str) + len(three_str) + len(two_str) != 9:
+                continue
+
+            digits = set()
+            for c in two_str:
+                digits.add(c)
+
+            for c in three_str:
+                digits.add(c)
+
+            for c in product_str:
+                digits.add(c)
+
+            if len(digits) == 9:
+                products.add(product)
+
+    return sum(products)
 
 
 if __name__ == "__main__":

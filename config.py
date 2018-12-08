@@ -1,2 +1,2 @@
 MAX_PROBLEMS = 528
-# MAX_PROBLEMS = 330
+WORKING_DIR = "/Users/alexmarkovits/git/ProjectEuler"

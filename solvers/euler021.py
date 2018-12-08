@@ -19,7 +19,35 @@ Evaluate the sum of all the amicable numbers under 10000.
 
 
 def main():
-    return "unimplemented"
+    import math
+
+    # maps numbers to the sum of their proper divisors
+    mem = {}
+
+    # sum of all amicable numbers under 10000
+    tot = 0
+
+    for i in range(1, 10000):
+        # sum of all proper divisors of i
+        divisors_sum = 0
+
+        for j in range(1, int(math.sqrt(i))):
+            if i % j == 0:
+                divisors_sum += j
+                other = i / j
+                if other != j and other != i:
+                    divisors_sum += int(other)
+
+        # check if amicable
+        if mem.get(divisors_sum):
+            if mem.get(divisors_sum) == i:
+                i, divisors_sum
+                tot += i
+                tot += divisors_sum
+
+        mem[i] = divisors_sum
+
+    return tot
 
 
 if __name__ == "__main__":

@@ -12,7 +12,11 @@ What is the sum of the digits of the number 2^1000?
 
 
 def main():
-    return "unimplemented"
+    x = 2 ** 1000
+    tot = 0
+    for c in str(x):
+        tot += int(c)
+    return tot
 
 
 if __name__ == "__main__":

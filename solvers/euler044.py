@@ -20,7 +20,36 @@ the value of D?
 
 
 def main():
-    return "unimplemented"
+    pentagonals = []
+    lowest_diff = float("inf")
+    for n in range(1, 50001):
+        pentagonal = int(n * (3 * n - 1) / 2)
+        pentagonals.append(pentagonal)
+
+    pents = set(pentagonals)
+
+    for i in range(1, 30000):
+        pentagonal = pentagonals[i]
+        last_diff = pentagonal - pentagonals[i - 1]
+        if last_diff > lowest_diff:
+            print("lowest diff possible: ", lowest_diff)
+            return
+
+        # print pentagonal, [p for p in reversed(pentagonals[:i])]
+        for other_pentagonal in reversed(pentagonals[:i]):
+            diff = pentagonal - other_pentagonal
+            if diff > lowest_diff:
+                break
+
+            summ = pentagonal + other_pentagonal
+            if diff in pents and summ in pents:
+                lowest_diff = diff
+
+            if summ > pentagonals[-1]:
+                print("need more")
+                return
+
+    return lowest_diff
 
 
 if __name__ == "__main__":

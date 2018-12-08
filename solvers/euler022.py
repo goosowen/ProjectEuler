@@ -19,7 +19,30 @@ What is the total of all the name scores in the file?
 
 
 def main():
-    return "unimplemented"
+    import csv
+    import os
+    from config import WORKING_DIR
+    from common.constants import letter_to_score
+
+    names = []
+    os.chdir(WORKING_DIR)
+    with open("resources/p022_names.txt", 'r') as f:
+        for row in csv.reader(f, delimiter=','):
+            names.append(row)
+
+    names = sorted(names[0])
+
+    tot = 0
+    for i in range(len(names)):
+        name = names[i]
+        word_total = 0
+        for c in name:
+            word_total += letter_to_score[c]
+
+        pos_total = word_total * (i + 1)
+        tot += pos_total
+
+    return tot
 
 
 if __name__ == "__main__":

@@ -23,9 +23,43 @@ the concatenated product of an integer with (1,2, ... , n) where n > 1?
 """
 
 
+# TODO optimize
 def main():
-    return "unimplemented"
+    def creates_pandigital(n, i):
+        digits = ''
+        for nn in list(range(1, n)):
+            if len(digits) > 9:
+                return False
 
+            product = nn * i
+            for c in str(product):
+                if c in digits or c == '0':
+                    return False
+                digits += c
+
+        if len(digits) != 9:
+            return False
+
+        return int(digits)
+
+    def find_largest_pandigital_from_range_set_and_other_integer():
+        max_pandigital = 0
+        max_n = 0
+        max_i = 0
+
+        for n in range(2, 9):
+            range_n = list(range(1, n))
+            for i in range(1, 10 ** (int(9 / n) + 1)):
+                pan = creates_pandigital(n, i)
+                if pan != False:
+                    if pan > max_pandigital:
+                        max_pandigital = pan
+                        max_n = n
+                        max_i = i
+
+        return max_pandigital
+
+    return find_largest_pandigital_from_range_set_and_other_integer()
 
 if __name__ == "__main__":
     import ntpath

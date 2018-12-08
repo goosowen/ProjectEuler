@@ -27,7 +27,27 @@ efficient algorithm to solve it. ;o)
 
 
 def main():
-    return "unimplemented"
+    import os
+    from config import WORKING_DIR
+
+    os.chdir(WORKING_DIR)
+    with open('resources/p067_triangle.txt') as f:
+        content = f.read().splitlines()
+
+    TRIANGLE = []
+    for l in content:
+        TRIANGLE.append(map(int, l.split(' ')))
+
+    # maps position (r,c) to best total to that position
+    mem = {(0, 0): TRIANGLE[0][0], (1, 0): TRIANGLE[0][0] + TRIANGLE[1][0], (1, 1): TRIANGLE[0][0] + TRIANGLE[1][1]}
+
+    for row in range(2, len(TRIANGLE)):
+        mem[(row, 0)] = mem[(row - 1, 0)] + TRIANGLE[row][0]
+        mem[(row, row)] = mem[(row - 1, row - 1)] + TRIANGLE[row][row]
+        for col in range(1, row):
+            mem[(row, col)] = max(mem[(row - 1, col - 1)], mem[(row - 1, col)]) + TRIANGLE[row][col]
+
+    return max(mem.values())
 
 
 if __name__ == "__main__":

@@ -22,7 +22,16 @@ same way?
 
 
 def main():
-    return "unimplemented"
+    jump = 2
+    tot = 1
+    i = 1
+    while i < 1001 ** 2:
+        for j in range(4):
+            i += jump
+            tot += i
+        jump += 2
+
+    return tot
 
 
 if __name__ == "__main__":

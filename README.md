@@ -6,6 +6,8 @@ My solutions and performance testing for all Project Euler problems https://proj
 - Add Instructions Here
 - Add Attribution to Project Euler and EulerPy Here
 
+- Separate requirements.txt for modules in solvers
+
 - Generator
     - Get up to date answers as I go
     - Finish copying over solvers_old and then delete

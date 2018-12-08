@@ -22,7 +22,15 @@ powers of their digits.
 
 
 def main():
-    return "unimplemented"
+    nice_nums = set()
+    for i in range(2, 1000000):
+        tot = 0
+        for c in str(i):
+            tot += int(c) ** 5
+        if tot == i:
+            nice_nums.add(i)
+
+    return sum(nice_nums)
 
 
 if __name__ == "__main__":

@@ -17,7 +17,16 @@ leading zeros.)
 
 
 def main():
-    return "unimplemented"
+    from common.euler_functions import is_palindrome
+
+    LIMIT = 1000000
+
+    tot = 0
+    for num in range(LIMIT):
+        if is_palindrome(str(num)) and is_palindrome(bin(num)[2:]):
+            tot += num
+
+    return tot
 
 
 if __name__ == "__main__":

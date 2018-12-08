@@ -28,7 +28,31 @@ sum of two abundant numbers.
 
 
 def main():
-    return "unimplemented"
+    import math
+
+    def is_abundant(i):
+        divisors_sum = 0
+        for j in range(1, int(math.sqrt(i)) + 1):
+            if i % j == 0:
+                divisors_sum += j
+                other = i / j
+                if other != j and other != i:
+                    divisors_sum += other
+
+        return divisors_sum > i
+
+    non_abundant_summed = set(range(1, 28124))
+
+    abundant_nums = []
+
+    for i in range(1, 28124):
+        if is_abundant(i):
+            if 2 * i in non_abundant_summed: non_abundant_summed.remove(2 * i)
+            for abundant_num in abundant_nums:
+                if abundant_num + i in non_abundant_summed: non_abundant_summed.remove(abundant_num + i)
+            abundant_nums.append(i)
+
+    return sum(non_abundant_summed)
 
 
 if __name__ == "__main__":

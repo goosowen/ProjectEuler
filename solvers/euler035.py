@@ -15,8 +15,29 @@ How many circular primes are there below one million?
 """
 
 
+# TODO use lazy prime initialization with runner
 def main():
-    return "unimplemented"
+    from common.euler_functions import is_prime
+
+    LIMIT = 1000000
+
+    circular_primes = []
+    for num in range(2, LIMIT):
+        num_rotations = 0
+        num_str = str(num)
+        circular_prime = True
+        while num_rotations < len(num_str):
+            if not is_prime(int(num_str)):
+                circular_prime = False
+                break
+            else:
+                num_rotations += 1
+                num_str = num_str[1:] + num_str[:1]
+
+        if circular_prime:
+            circular_primes.append(num)
+
+    return len(circular_primes)
 
 
 if __name__ == "__main__":

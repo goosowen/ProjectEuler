@@ -21,7 +21,15 @@ of the following expression.
 
 
 def main():
-    return "unimplemented"
+    frac_str = ''
+    for i in range(1, 1000000):
+        frac_str += str(i)
+
+    product = 1
+    for e in range(7):
+        product *= int(frac_str[10 ** e - 1])
+
+    return product
 
 
 if __name__ == "__main__":

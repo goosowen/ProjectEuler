@@ -14,7 +14,16 @@ What is the largest n-digit pandigital prime that exists?
 
 
 def main():
-    return "unimplemented"
+    from common.euler_functions import is_prime
+    import itertools
+
+    for n_digits in range(10, 1, -1):
+        digits = ''.join([str(x) for x in list(range(1, n_digits))])
+        pandigitals = sorted(list(itertools.permutations(digits)), reverse=True)
+        for p in pandigitals:
+            n = int(''.join(p))
+            if is_prime(n):
+                return n
 
 
 if __name__ == "__main__":

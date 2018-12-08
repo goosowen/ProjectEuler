@@ -19,7 +19,13 @@ with British usage.
 
 
 def main():
-    return "unimplemented"
+    from num2words import num2words
+
+    num_letters = 0
+    for i in range(1, 1001):
+        stripped_num = num2words(i).replace(" ", "").replace("-", "")
+        num_letters += len(stripped_num)
+    return num_letters
 
 
 if __name__ == "__main__":

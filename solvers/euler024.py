@@ -18,7 +18,32 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3,
 
 
 def main():
-    return "unimplemented"
+    import math
+
+    # The first factorial above 1,000,000 is 10. 10! = 3,628,800. Working backwards, that means there
+    # are 362,880 orderings with 0 in front. Then another 362,880 with 1 in front. etc.
+
+    final_number = ""
+    non_fixed_nums = list(range(10))
+    total = 999999
+
+    factorials = [math.factorial(x) for x in range(1, 11)]
+
+    while total > 0:
+        for pos in range(10, 0, -1):
+            for i in range(pos, 0, -1):
+                fact = factorials[i - 1]
+                if fact <= total:
+                    final_number += str(non_fixed_nums.pop(total / fact))
+                    total, i, fact, final_number[-1], total / fact
+                    total = total % fact
+
+                    break
+
+    for remainder_num in non_fixed_nums:
+        final_number += str(remainder_num)
+
+    return final_number
 
 
 if __name__ == "__main__":

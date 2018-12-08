@@ -36,7 +36,7 @@ def get_my_answer(problem_number):
         met = getattr(mod, "main")
         return str(met())
     except Exception as e:
-        print(e)
+        print(problem_number, e)
         return None
 
 

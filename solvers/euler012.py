@@ -29,8 +29,32 @@ divisors?
 """
 
 
+# pure brute force method
 def main():
-    return "unimplemented"
+    import math
+
+    DIVISORS = 500
+
+    def find_num(limit):
+        tot = 0
+
+        for i in range(1, limit):
+            tot += i
+
+            num_divisors = 1
+            for d in range(int(math.sqrt(tot)), 1, -1):
+                if tot % d == 0:
+                    num_divisors += 1
+
+            if num_divisors * 2 >= DIVISORS:
+                tot, num_divisors * 2
+                return tot
+
+        # mem[tot] = divisor_list
+
+        return "limit not big enough"
+
+    return find_num(50000)
 
 
 if __name__ == "__main__":

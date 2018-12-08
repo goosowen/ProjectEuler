@@ -13,7 +13,12 @@ How many routes are there through a 20 * 20 grid?
 
 
 def main():
-    return "unimplemented"
+    from common.euler_functions import choose
+
+    # It's 40 choose 20 = 137846528820
+    # There are 40 moves and 20 of them have to be down, 20 have to be right.
+    # It doesn't matter the order.
+    return choose(40, 20)
 
 
 if __name__ == "__main__":

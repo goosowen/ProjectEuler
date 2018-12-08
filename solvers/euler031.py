@@ -19,7 +19,20 @@ How many different ways can -L-2 be made using any number of coins?
 
 
 def main():
-    return "unimplemented"
+    coins = [200, 100, 50, 20, 10, 5, 2]  # the 1 is implied in find_combos
+
+    def find_combos(coins, remaining):
+        if not coins:
+            return 1
+
+        tot = 0
+        val = coins[0]
+        for i in range(int(remaining / val) + 1):
+            tot += find_combos(coins[1:], remaining - val * i)
+
+        return tot
+
+    return find_combos(coins, 200)
 
 
 if __name__ == "__main__":

@@ -19,7 +19,20 @@ Find the next triangle number that is also pentagonal and hexagonal.
 
 
 def main():
-    return "unimplemented"
+    pents = set()
+    hexas = set()
+
+    for n in range(1, 100000):
+        tri = int(n * (n + 1) / 2)
+        pent = int(n * (3 * n - 1) / 2)
+        hexa = int(n * (2 * n - 1))
+
+        pents.add(pent)
+        hexas.add(hexa)
+
+        if tri in pents and tri in hexas:
+            if tri > 40755:
+                return tri
 
 
 if __name__ == "__main__":
