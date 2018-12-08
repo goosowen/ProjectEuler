@@ -13,5 +13,5 @@ def get_sum_multiples(x):
 
 
 # print get_sum_multiples(3)
-print get_sum_multiples(3) + get_sum_multiples(5) - get_sum_multiples(15)
+print(get_sum_multiples(3) + get_sum_multiples(5) - get_sum_multiples(15))
 x = [1, 2, 3]

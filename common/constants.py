@@ -6,8 +6,8 @@ letter_to_score = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7, "H": 
 
 
 class VerificationType(Enum):
-        correct = 1
-        incorrect = 2
-        unimplemented = 3
-        exception = 4
-        unknown = 5
+        CORRECT = 1
+        INCORRECT = 2
+        UNIMPLEMENTED = 3
+        EXCEPTION = 4
+        UNKNOWN = 5

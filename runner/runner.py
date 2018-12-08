@@ -1,9 +1,7 @@
 import gevent.monkey
 from gevent.pool import Group
 from runner.displayer import Displayer
-from common.shared_functions import get_my_answer
-from common.shared_functions import verify_solution
-from common.constants import answer_types
+from common.shared_functions import verify_solution_wrapper
 
 gevent.monkey.patch_all()
 
@@ -19,7 +17,7 @@ class Runner:
         self.solutions = {}
         self.populate_solutions()
 
-        self.displayer = Displayer()
+        self.displayer = Displayer(self.logger)
 
     def populate_solutions(self):
         with open('solutions.txt') as f:
@@ -43,7 +41,7 @@ class Runner:
         results = []
 
         for problem_number in self.problems:
-            tasks.append(verification_task_group.spawn(verify_solution, problem_number))
+            tasks.append(verification_task_group.spawn(verify_solution_wrapper, problem_number))
 
         gevent.joinall(tasks)
         for task in tasks:
@@ -53,3 +51,4 @@ class Runner:
                 raise ValueError('gevent thread was not successful')
 
         self.displayer.display(results)
+        self.displayer.log_statistics(results)

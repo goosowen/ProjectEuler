@@ -2,6 +2,7 @@ import os
 from importlib import import_module
 from common.constants import VerificationType
 import time
+import sys
 
 
 def timeit(method):
@@ -16,10 +17,22 @@ def timeit(method):
     return timed
 
 
+def get_percent(x):
+    return round(100 * float(x), 2)
+
+
+def display_percent(name, numerator, denominator):
+    percent = get_percent(numerator / float(denominator + sys.float_info.epsilon))
+    return "{}: {}/{} = {}%".format(name, round(numerator, 2), round(denominator, 2), percent)
+
+
 def get_my_answer(problem_number):
     try:
         euler_file = "solvers.euler" + str(problem_number).zfill(3)
-        mod = import_module(euler_file)
+        try:
+            mod = import_module(euler_file)
+        except:
+            return "unimplemented"
         met = getattr(mod, "main")
         return str(met())
     except Exception as e:
@@ -38,27 +51,32 @@ def get_solution(problem_number):
             if len(problem_and_solution) == 2:
                 problem = int(problem_and_solution[0])
                 if problem == problem_number:
-                    solution = int(problem_and_solution[1].strip())
+                    solution = str(problem_and_solution[1].strip())
                     return solution
 
     return None
 
 
+def verify_solution_wrapper(problem_number):
+    return problem_number, verify_solution(problem_number)
+
+
 def verify_solution(problem_number, my_answer=None):
+    solution = get_solution(problem_number)
+    if not solution:
+        return VerificationType.UNKNOWN
+
     if not my_answer:
         my_answer = get_my_answer(problem_number)
 
     if not my_answer:
-        return VerificationType.exception
+        return VerificationType.EXCEPTION
 
     if my_answer == "unimplemented":
-        return VerificationType.unimplemented
+        return VerificationType.UNIMPLEMENTED
 
-    solution = get_solution(problem_number)
-    if not solution:
-        return VerificationType.unknown
-
+    my_answer = str(my_answer)
     if my_answer == solution:
-        return VerificationType.correct
+        return VerificationType.CORRECT
     else:
-        return VerificationType.incorrect
+        return VerificationType.INCORRECT

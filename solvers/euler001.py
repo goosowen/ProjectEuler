@@ -12,15 +12,14 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 """
 
 
-def get_sum_multiples(x, threshold):
-    num_multiples_of_x = (threshold - 1) / x
-    sum_multiples_of_x = x * (num_multiples_of_x + 1) * num_multiples_of_x / 2
-    return sum_multiples_of_x
-
-
 def main():
+    tot = 0
     threshold = 1000
-    return get_sum_multiples(3, threshold) + get_sum_multiples(5, threshold) - get_sum_multiples(15, threshold)
+    for i in range(threshold):
+        if i % 3 == 0 or i % 5 == 0:
+            tot += i
+
+    return tot
 
 
 if __name__ == "__main__":

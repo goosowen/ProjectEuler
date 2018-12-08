@@ -27,7 +27,7 @@ def sum_of_squares(n):
 
 
 def square_of_sum(n):
-    return (n * (n + 1) / 2) ** 2
+    return int((n * (n + 1) / 2)) ** 2
 
 
 def main():
@@ -40,14 +40,14 @@ if __name__ == "__main__":
     from common.shared_functions import verify_solution
 
     problem_number = int(ntpath.basename(__file__).replace("euler", "").replace(".py", ""))
-    print("Retrieving my answer to Euler Problem {0} ...".format(problem_number))
+    print("Retrieving my answer to Euler Problem {} ...".format(problem_number))
 
     ts = time.time()
     my_answer = main()
     te = time.time()
 
-    print("My answer: {1}".format(problem_number, my_answer))
+    print("My answer: {}".format(problem_number, my_answer))
 
     verification_type = verify_solution(problem_number, my_answer)
-    print("Verification: {0}".format(verification_type.name))
-    print("Took {0} seconds.".format(te - ts))
+    print("Verification: {}".format(verification_type.name))
+    print("Took {} seconds.".format(te - ts))
