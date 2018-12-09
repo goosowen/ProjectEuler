@@ -26,6 +26,7 @@ efficient algorithm to solve it. ;o)
 """
 
 
+# TODO put the chdir into the file template
 def main():
     import os
     from config import WORKING_DIR
@@ -36,7 +37,7 @@ def main():
 
     TRIANGLE = []
     for l in content:
-        TRIANGLE.append(map(int, l.split(' ')))
+        TRIANGLE.append([int(x) for x in l.split(' ')])
 
     # maps position (r,c) to best total to that position
     mem = {(0, 0): TRIANGLE[0][0], (1, 0): TRIANGLE[0][0] + TRIANGLE[1][0], (1, 1): TRIANGLE[0][0] + TRIANGLE[1][1]}

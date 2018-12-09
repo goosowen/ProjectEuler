@@ -22,8 +22,7 @@ prime and twice a square?
 """
 
 
-# TODO optimize lazy initialization of squares and primes in runner
-# Also, probably a more mathematical way to approach this
+# TODO lazy initialization of squares and primes in runner
 def main():
     from common.euler_functions import is_prime_mem
 
