@@ -17,27 +17,19 @@ What 12-digit number do you form by concatenating the three terms in this
 sequence?
 """
 
-import math
 
-
-# TODO use the common function
-def is_prime(i):
-    for j in range(2, int(math.sqrt(i)) + 1):
-        if i % j == 0:
-            return False
-    return True
-
-
-def get_all_four_digit_primes():
-    s = []
-    for i in range(1000, 10001):
-        if is_prime(i):
-            s.append(i)
-
-    return s
-
-
+# TODO optimize
 def main():
+    from common.euler_functions import is_prime
+
+    def get_all_four_digit_primes():
+        s = []
+        for i in range(1000, 10001):
+            if is_prime(i):
+                s.append(i)
+
+        return s
+
     primes = get_all_four_digit_primes()
     permutations_dict = {}
     for p in primes:

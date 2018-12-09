@@ -20,25 +20,27 @@ Find the first four consecutive integers to have four distinct primes
 factors. What is the first of these numbers?
 """
 
-from ..common import get_prime_factors
 
-
+# TODO use LogDebug
+# TODO optimize, takes ~90 seconds
 def main():
+    from common.euler_functions import get_prime_factors
+
     consecutive = []
     consecutive_debug = []
     mem = {}
     for i in range(2, 1000000):
         if len(consecutive) == 4:
-            print(consecutive)
-            print(consecutive_debug)
-            break
+            #     print(consecutive)
+            #     print(consecutive_debug)
+            return consecutive[0]
 
-        if len(consecutive) >= 3:
-            print(consecutive)
-            print(consecutive_debug)
+        # if len(consecutive) >= 3:
+        #     print(consecutive)
+        #     print(consecutive_debug)
 
-        if i % 10000 == 0:
-            print("Processing at", i, "...")
+        # if i % 10000 == 0:
+        #     print("Processing at", i, "...")
 
         mem[i] = get_prime_factors(i, mem)
         if len(mem[i]) == 4:
@@ -47,8 +49,6 @@ def main():
         else:
             consecutive = []
             consecutive_debug = []
-
-    return (consecutive[0])
 
 
 if __name__ == "__main__":

@@ -58,18 +58,34 @@ def get_solution(problem_number):
 
 
 def verify_solution_wrapper(problem_number):
-    return problem_number, verify_solution(problem_number)
+    return problem_number, get_and_verify_solution(problem_number)
 
 
-def verify_solution(problem_number, my_answer=None):
+def get_and_verify_solution(problem_number):
     solution = get_solution(problem_number)
     if not solution:
         return VerificationType.UNKNOWN
 
-    if not my_answer:
-        my_answer = get_my_answer(problem_number)
+    my_answer = get_my_answer(problem_number)
+    if my_answer is None:
+        return VerificationType.EXCEPTION
 
-    if not my_answer:
+    if my_answer == "unimplemented":
+        return VerificationType.UNIMPLEMENTED
+
+    my_answer = str(my_answer)
+    if my_answer == solution:
+        return VerificationType.CORRECT
+    else:
+        return VerificationType.INCORRECT
+
+
+def verify_solution(problem_number, my_answer):
+    solution = get_solution(problem_number)
+    if not solution:
+        return VerificationType.UNKNOWN
+
+    if my_answer is None:
         return VerificationType.EXCEPTION
 
     if my_answer == "unimplemented":
