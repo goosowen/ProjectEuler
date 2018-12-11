@@ -25,8 +25,8 @@ consecutive primes?
 def main():
     from common.euler_functions import is_prime_mem
 
-    max_consecutive = 0
-    best_consecutive = []
+    max_seq_length = 0
+    best_seq = []
     best_num = 0
 
     limit = 10**6
@@ -36,33 +36,21 @@ def main():
         if is_prime_mem(i, primes):
             primes.append(i)
 
-    print(len(primes))
-
-    # def get_consecutives(i, j, consecutives, primes):
-    #     if i == j:
-    #         return primes[i]
-    #
-    #     return get_consecutives()
-
-    consecutives = {}
     for i in range(len(primes)):
+        tot_at_i = 0
         for j in range(i, len(primes)):
-            if i == j:
-                consecutives[(i, j)] = primes[j]
-            else:
-                consecutives[(i, j)] = consecutives[(i, j-1)] + primes[j]
+            tot_at_i += primes[j]
 
-            if consecutives[(i, j)] in primes and j-i+1 > max_consecutive:
-                max_consecutive = j-i+1
-                best_consecutive = primes[i:j+1]
-                best_num = consecutives[(i, j)]
-                print(best_num, max_consecutive, best_consecutive)
-                assert best_num == sum(best_consecutive)
-
-            if consecutives[(i, j)] > limit:
+            if tot_at_i > limit:
                 break
 
-    print(best_num, max_consecutive, best_consecutive)
+            seq_length = j - i + 1
+            if seq_length > max_seq_length and tot_at_i in primes:
+                max_seq_length = seq_length
+                best_seq = primes[i:j + 1]
+                best_num = tot_at_i
+                # print(best_num, max_seq_length, best_seq)
+
     return best_num
 
 
