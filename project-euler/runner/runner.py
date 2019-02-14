@@ -35,20 +35,27 @@ class Runner:
         self.logger.info('Solution to problem %s not found in problems.txt', num)
         return False
 
-    def verify_all_solutions(self):
-        verification_task_group = Group()
-        tasks = []
+    def verify_all_solutions(self, parallel=True):
         results = []
 
-        for problem_number in self.problems:
-            tasks.append(verification_task_group.spawn(verify_solution_wrapper, problem_number))
+        if parallel:
+            tasks = []
+            verification_task_group = Group()
 
-        gevent.joinall(tasks)
-        for task in tasks:
-            if task.successful():
-                results.append(task.value)
-            else:
-                raise ValueError('gevent thread was not successful')
+            for problem_number in self.problems:
+                tasks.append(verification_task_group.spawn(verify_solution_wrapper, problem_number))
+
+            gevent.joinall(tasks)
+            for task in tasks:
+                if task.successful():
+                    results.append(task.value)
+                else:
+                    raise ValueError('gevent thread was not successful')
+        else:
+            for problem_number in self.problems:
+                result = verify_solution_wrapper(problem_number)
+                results.append(result)
+                print(result)
 
         self.displayer.display(results)
         self.displayer.log_statistics(results)

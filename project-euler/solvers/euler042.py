@@ -23,6 +23,8 @@ English words, how many are triangle words?
 def main():
     # TODO put this in the template
     import os
+
+    # TODO must be a better way to do relative paths here..
     from config import WORKING_DIR
     os.chdir(WORKING_DIR)
 
