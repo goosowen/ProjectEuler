@@ -12,9 +12,10 @@
 8. Display statistics as we go, even in parallel
 9. Show the machine time each task took, even in parallel
 10. Generate documentation with Pycco https://realpython.com/generating-code-documentation-with-pycco/?__s=zormchdsmgaxbhwnhehj
+11. Oooh maybe add capabilities to display problems in a Jupyter notebook?
 
 - Generator
-    - Get up to date answers as I go
+    - Get up-to-date answers as I go
 - Displayer
     - Neatly show missed questions
     - Performance graph fun
